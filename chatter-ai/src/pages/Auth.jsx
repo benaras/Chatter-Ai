@@ -75,7 +75,8 @@ const Auth = () => {
         }
 
         setMessage(`Welcome back, ${username || 'user'}!`);
-        navigate('/'); // go to homepage
+        // navigate('/'); // go to homepage
+        navigate('/home');
       }
     }
   };
