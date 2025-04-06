@@ -1,0 +1,18 @@
+/* src/pages/ProfileSetup.module.css */
+.container {
+    max-width: 400px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.input {
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.button {
+    padding: 10px 20px;
+    cursor: pointer;
+}

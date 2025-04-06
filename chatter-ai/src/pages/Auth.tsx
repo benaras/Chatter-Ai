@@ -1,24 +1,26 @@
+// src/pages/Auth.tsx
 import React, { useState } from 'react';
-import { supabase } from '../supabaseClient';
+import { supabase } from '../supabaseClient.ts';
 import { useNavigate } from 'react-router-dom';
+import styles from './Auth.module.css';
 
-const Auth = () => {
-  const [isSignUp, setIsSignUp] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-  const [language, setLanguage] = useState('');
-  const [level, setLevel] = useState('');
-  const [message, setMessage] = useState('');
+const Auth: React.FC = () => {
+  const [isSignUp, setIsSignUp] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
+  const [language, setLanguage] = useState<string>('');
+  const [level, setLevel] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage('');
 
     if (isSignUp) {
       // SIGN UP
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password
       });
@@ -29,9 +31,7 @@ const Auth = () => {
       }
 
       setMessage('Sign up successful! Check your email to confirm your account.');
-
-      // We can't create the profile until user confirms their email
-      // Profile will be created on login (see below)
+      // Profile creation will be handled after email confirmation
 
     } else {
       // LOGIN
@@ -55,7 +55,7 @@ const Auth = () => {
           .eq('user_id', userId)
           .single();
 
-        // If no profile, create one from saved sign-up values
+        // If no profile exists, create one from the sign-up values
         if (!existingProfile) {
           const { error: insertError } = await supabase.from('profiles').insert([
             {
@@ -75,14 +75,13 @@ const Auth = () => {
         }
 
         setMessage(`Welcome back, ${username || 'user'}!`);
-        // navigate('/'); // go to homepage
         navigate('/home');
       }
     }
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '2rem auto', textAlign: 'center' }}>
+    <div className={styles.container}>
       <h2>{isSignUp ? 'Create Account' : 'Login'}</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -91,7 +90,7 @@ const Auth = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={{ padding: '8px', width: '100%', marginBottom: '1rem' }}
+          className={styles.input}
         />
         <input
           type="password"
@@ -99,7 +98,7 @@ const Auth = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={{ padding: '8px', width: '100%', marginBottom: '1rem' }}
+          className={styles.input}
         />
 
         {isSignUp && (
@@ -110,14 +109,18 @@ const Auth = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              style={{ padding: '8px', width: '100%', marginBottom: '1rem' }}
+              className={styles.input}
             />
 
+            <label htmlFor="language-select" className={styles.label}>
+              Select your preferred language:
+            </label>
             <select
+              id="language-select"
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
               required
-              style={{ padding: '8px', width: '100%', marginBottom: '1rem' }}
+              className={styles.input}
             >
               <option value="">Select a language</option>
               <option value="Spanish">Spanish</option>
@@ -126,13 +129,16 @@ const Auth = () => {
               <option value="Portuguese">Portuguese</option>
             </select>
 
+            <label htmlFor="level-select" className={styles.label}>
+              Select your proficiency level:
+            </label>
             <select
+              id="level-select"
               value={level}
               onChange={(e) => setLevel(e.target.value)}
               required
-              style={{ padding: '8px', width: '100%', marginBottom: '1rem' }}
+              className={styles.input}
             >
-              <option value="">Select a level</option>
               <option value="">Select a level</option>
               <option value="A1">Absolute Beginner: A1</option>
               <option value="A2">Seasoned Beginner: A2</option>
@@ -144,27 +150,19 @@ const Auth = () => {
           </>
         )}
 
-        <button type="submit" style={{ padding: '10px 20px' }}>
+        <button type="submit" className={styles.button}>
           {isSignUp ? 'Sign Up' : 'Login'}
         </button>
       </form>
 
-      <p style={{ marginTop: '1rem' }}>
+      <p className={styles.toggleText}>
         {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
-        <button
-          onClick={() => setIsSignUp(!isSignUp)}
-          style={{
-            color: 'blue',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer'
-          }}
-        >
+        <button onClick={() => setIsSignUp(!isSignUp)} className={styles.toggleButton}>
           {isSignUp ? 'Login' : 'Sign Up'}
         </button>
       </p>
 
-      {message && <p style={{ marginTop: '1rem', color: 'red' }}>{message}</p>}
+      {message && <p className={styles.message}>{message}</p>}
     </div>
   );
 };

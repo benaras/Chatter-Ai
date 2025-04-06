@@ -1,25 +1,29 @@
+// src/App.tsx
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Auth from './pages/Auth';
 import Home from './pages/Home';
 import Chat from './pages/Chat';
 import ProfileSetup from './pages/ProfileSetup';
+import styles from './App.module.css';
 
-
-const App = () => {
+const App: React.FC = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/auth" replace />} />
-      <Route path="/auth" element={<Auth />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/chat" element={<Chat />} />
-      <Route path="/profile-setup" element={<ProfileSetup />} />
-      <Route path="*" element={<div><h1>Not Found</h1></div>} />
-    </Routes>
+    <div className={styles.app}>
+      <Routes>
+        <Route path="/" element={<Navigate to="/auth" replace />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/profile-setup" element={<ProfileSetup />} />
+        <Route path="*" element={<div><h1>Not Found</h1></div>} />
+      </Routes>
+    </div>
   );
 };
 
 export default App;
+
 
 
 // ORIGINAL DEFAULT CODE

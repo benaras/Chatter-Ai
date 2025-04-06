@@ -1,13 +1,28 @@
+// src/pages/Chat.tsx
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
+import styles from './Chat.module.css';
 
-const Chat = () => {
-  const [userProfile, setUserProfile] = useState(null);
-  const [messages, setMessages] = useState([
+interface Message {
+  role: 'assistant' | 'user';
+  content: string;
+}
+
+interface UserProfile {
+  language: string;
+  level: string;
+  known_words?: string[];
+  developing_words?: string[];
+  // add other fields as needed
+}
+
+const Chat: React.FC = () => {
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: 'Hi! Ready to practice your language skills?' }
   ]);
-  const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [input, setInput] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   // Load user profile from Supabase
   useEffect(() => {
@@ -34,7 +49,7 @@ const Chat = () => {
   const sendMessage = async () => {
     if (!input.trim() || !userProfile) return;
 
-    const newMessages = [...messages, { role: 'user', content: input }];
+    const newMessages: Message[] = [...messages, { role: 'user', content: input }];
     setMessages(newMessages);
     setInput('');
     setLoading(true);
@@ -79,11 +94,11 @@ Make sure to speak appropriately to their level and gradually introduce new word
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '2rem' }}>
+    <div className={styles.container}>
       <h2>🧠 AI Chat</h2>
-      <div style={{ border: '1px solid #ccc', borderRadius: '8px', padding: '1rem', height: '300px', overflowY: 'scroll', marginBottom: '1rem' }}>
+      <div className={styles.chatBox}>
         {messages.map((msg, i) => (
-          <div key={i} style={{ textAlign: msg.role === 'user' ? 'right' : 'left', margin: '0.5rem 0' }}>
+          <div key={i} className={msg.role === 'user' ? styles.messageUser : styles.messageAI}>
             <strong>{msg.role === 'user' ? 'You' : 'AI'}:</strong> {msg.content}
           </div>
         ))}
@@ -95,9 +110,9 @@ Make sure to speak appropriately to their level and gradually introduce new word
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message..."
-          style={{ padding: '10px', width: '80%', marginRight: '1rem' }}
+          className={styles.input}
         />
-        <button type="submit" disabled={loading}>Send</button>
+        <button type="submit" disabled={loading} className={styles.button}>Send</button>
       </form>
     </div>
   );

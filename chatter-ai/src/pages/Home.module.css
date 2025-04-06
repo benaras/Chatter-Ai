@@ -1,0 +1,13 @@
+/* src/pages/Home.module.css */
+.container {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  

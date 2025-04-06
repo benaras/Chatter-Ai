@@ -1,8 +1,13 @@
-#root {
+/* src/App.module.css */
+:global(#root) {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.app {
+  /* Additional app-level styles can go here if needed */
 }
 
 .logo {
@@ -11,9 +16,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -37,6 +44,6 @@
   padding: 2em;
 }
 
-.read-the-docs {
+.readTheDocs {
   color: #888;
 }
