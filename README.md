@@ -47,35 +47,9 @@ Prerequisites
    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
    VITE_OPENAI_API_KEY=your_openai_api_key
    ```
-
-4. **Supabase Configuration**
-
-   - Create a new project in Supabase
-   - Set up the following table in your Supabase database:
-
-   ```sql
-   CREATE TABLE profiles (
-     id SERIAL PRIMARY KEY,
-     user_id UUID REFERENCES auth.users NOT NULL,
-     username TEXT,
-     language TEXT,
-     level TEXT,
-     known_words JSONB DEFAULT '[]'::jsonb,
-     developing_words JSONB DEFAULT '[]'::jsonb,
-     streak INTEGER DEFAULT 0,
-     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-   );
-   ```
-
+   
 Running the Application
-1. **Start the backend server**
-   ```bash
-   cd server
-   node server.js
-   ```
-   The backend server will run on port 5000
-g2. **Start the frontend development server**
+**Start the frontend development server**
    ```bash
    npm run dev
    ```
