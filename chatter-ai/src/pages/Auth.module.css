@@ -1,35 +1,58 @@
 /* src/pages/Auth.module.css */
 .container {
-    max-width: 400px;
-    margin: 2rem auto;
-    text-align: center;
-  }
-  
-  .input {
-    padding: 8px;
-    width: 100%;
-    margin-bottom: 1rem;
-    box-sizing: border-box;
-  }
-  
-  .button {
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  .toggleText {
-    margin-top: 1rem;
-  }
-  
-  .toggleButton {
-    color: blue;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .message {
-    margin-top: 1rem;
-    color: red;
-  }
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.toggleText {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.toggleButton {
+  color: var(--color-primary);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.message {
+  margin-top: 1rem;
+  color: #e53e3e;
+}
   

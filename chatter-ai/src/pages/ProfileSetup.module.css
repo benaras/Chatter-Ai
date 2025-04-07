@@ -1,18 +1,40 @@
 /* src/pages/ProfileSetup.module.css */
 .container {
+    width: 100%;
     max-width: 400px;
-    margin: 2rem auto;
+    margin: 0 auto;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     text-align: center;
 }
 
-.input {
-    padding: 8px;
-    width: 100%;
+.title {
+    font-size: 1.5rem;
+    color: var(--color-primary);
     margin-bottom: 1rem;
-    box-sizing: border-box;
 }
 
+.input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
 .button {
-    padding: 10px 20px;
-    cursor: pointer;
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed);
+}
+  
+.button:hover {
+    background-color: var(--color-primary-hover);
 }
