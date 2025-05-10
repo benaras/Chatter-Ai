@@ -49,3 +49,5 @@ app.post('/api/generate', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+app.get('/', (_, res) => res.json({ status: 'API is live' }));

@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Chat from './pages/Chat';
 import ProfileSetup from './pages/ProfileSetup';
 import styles from './App.module.css';
-import Logo from './assets/Chatter Ai.svg';
+import Logo from './assets/Chatter AI.svg';
 
 const App: React.FC = () => {
   return (
