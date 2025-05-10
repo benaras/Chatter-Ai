@@ -20,6 +20,7 @@ Prerequisites
 - Supabase account
 - OpenAI API key
 
+
  Installation Steps
 
 1. **Clone the repository**
@@ -96,3 +97,19 @@ Chatter-Ai/
 │           ├── ProfileSetup.tsx # User profile setup
 │           └── ProfileSetup.module.css # Profile setup styles
 ```
+
+##  Quick start (Docker — recommended)
+
+> **Requires:** Docker Desktop (macOS / Windows) or Docker Engine + Compose v2 (Linux).
+
+```bash
+# clone the repo
+git clone https://github.com/<your-username>/Chatter-Ai.git
+cd Chatter-Ai/chatter-ai          # Docker files live here
+
+# build & run both services (front-end + back-end) in one command
+docker compose up --build
+
+Service	-- URL	-- Notes
+Front-end --	http://localhost:8080 -- Static build served by Nginx
+Back-end --	http://localhost:5001	-- Express API (no / route by default)
