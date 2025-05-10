@@ -1,0 +1,18 @@
+# ---------- docker-compose.yml ----------
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .              # use Dockerfile at repo root
+    ports:
+      - "8080:80"             # browse at http://localhost:8080
+
+  backend:
+    build:
+      context: ./server       # use server/Dockerfile
+    ports:
+      - "5001:5000"           # API at    http://localhost:5001
+    depends_on:
+      - frontend
+
