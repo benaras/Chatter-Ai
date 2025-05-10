@@ -109,7 +109,7 @@ cd Chatter-Ai/chatter-ai          # Docker files live here
 
 # build & run both services (front-end + back-end) in one command
 docker compose up --build
-
+```
 Service	-- URL	-- Notes
 Front-end --	http://localhost:8080 -- Static build served by Nginx
 Back-end --	http://localhost:5001	-- Express API (no / route by default)
